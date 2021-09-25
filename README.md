@@ -9,6 +9,8 @@ Ok so, the feature I have put into the widget is as the APi supports today
 * Text - Receive
 * Image - Send
 * Image - Receive
+* Emoji - Send
+* Emoji - Receive
 * BOT - [Quick Replies](https://help.mypurecloud.com/articles/work-with-quick-replies-in-bot-conversations/)
 * Async - History pulled in
 
@@ -49,3 +51,11 @@ Once you have don that you should be good to go... here are some example screen 
 ![](/docs/images/botToAgent.png?raw=true)
 
 This widget can then of course be changed to suit themes, logos and complete CSS look and feel as required.
+
+## I have now also added an "Emoji Picker" to send emojis:
+
+![](/docs/images/emojiButton.png?raw=true)
+
+![](/docs/images/emojiPicker.png?raw=true)
+
+The emojis that appear in the list can be easily changed in the HTML file. The Button Group will dynamically adjust to suit the changes in emojis.
