@@ -31,7 +31,12 @@ function closeChat() {
     document.getElementById('widget').className = 'toast hide'
     document.getElementById('chatButton').className = 'toast show'
 }
-
+function openEmojis() {
+    document.getElementById('emojis').className = 'toast show'
+}
+function closeEmojis() {
+    document.getElementById('emojis').className = 'toast hide'
+}
 function fileStatus() {
     console.log('fileStatus changed')
     if (document.getElementById('formFileSm').files.length > 0) {

@@ -1,12 +1,14 @@
 <!doctype html>
 <html lang="en">
-    <!--Create by matt as an example only
+<!--Create by matt as an example only
     connects to the Genesys Cloud WebMessaging API
     https://developer.genesys.cloud/api/digital/webmessaging/websocketapi
     -->
+
 <head>
     <!-- Required meta tags -->
-    <meta name="robots" content="noindex" />	<!--Removes Google Crawler from indexing page-->
+    <meta name="robots" content="noindex" />
+    <!--Removes Google Crawler from indexing page-->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="./webMessagingAPI.js" defer></script>
@@ -19,7 +21,8 @@
 
 <body>
     <h1 class="m-3">Welcome to the custom webMessagingAPI widget page</h1>
-    <h5 class="m-3">ensure your url is like: "https://domain.com/webMessagingAPI.html?gc_region=mypurecloud.com.au&gc_deploymentId=ENTERID"</h5>
+    <h5 class="m-3">ensure your url is like:
+        "https://domain.com/webMessagingAPI.html?gc_region=mypurecloud.com.au&gc_deploymentId=ENTERID"</h5>
     <br>
     <br>
     <button type="button" class="m-3 btn btn-primary" onclick="clearToken()">Clear session token</button>
@@ -34,7 +37,118 @@
     <div style="display: flex;">
         <p class="m-3">Deployment:</p>
         <p class="m-3" id="deploymentId"></p>
-    </div>  
+    </div>
+
+    <!--Emoji Picker-->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 12">
+        <div id="emojis" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header justify-content-end" style="color: black;">Emoji Picker
+                <button type="button" onclick="closeEmojis()" class="btn-close" data-bs-dismiss="toast"
+                    aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                <div class="btn-group" style="flex-wrap: wrap;" role="group" aria-label="First group">
+                    <button type="button" class="btn btn-outline-secondary"
+                        onclick="document.getElementById('message').value = document.getElementById('message').value + this.innerHTML">😀</button>
+                    <button type="button" class="btn btn-outline-secondary"
+                        onclick="document.getElementById('message').value = document.getElementById('message').value + this.innerHTML">😁</button>
+                    <button type="button" class="btn btn-outline-secondary"
+                        onclick="document.getElementById('message').value = document.getElementById('message').value + this.innerHTML">😆</button>
+                    <button type="button" class="btn btn-outline-secondary"
+                        onclick="document.getElementById('message').value = document.getElementById('message').value + this.innerHTML">😂</button>
+                    <button type="button" class="btn btn-outline-secondary"
+                        onclick="document.getElementById('message').value = document.getElementById('message').value + this.innerHTML">😉</button>
+                    <button type="button" class="btn btn-outline-secondary"
+                        onclick="document.getElementById('message').value = document.getElementById('message').value + this.innerHTML">😏</button>
+                    <button type="button" class="btn btn-outline-secondary"
+                        onclick="document.getElementById('message').value = document.getElementById('message').value + this.innerHTML">😊</button>
+                    <button type="button" class="btn btn-outline-secondary"
+                        onclick="document.getElementById('message').value = document.getElementById('message').value + this.innerHTML">😍</button>
+                    <button type="button" class="btn btn-outline-secondary"
+                        onclick="document.getElementById('message').value = document.getElementById('message').value + this.innerHTML">😋</button>
+                    <button type="button" class="btn btn-outline-secondary"
+                        onclick="document.getElementById('message').value = document.getElementById('message').value + this.innerHTML">😎</button>
+                    <button type="button" class="btn btn-outline-secondary"
+                        onclick="document.getElementById('message').value = document.getElementById('message').value + this.innerHTML">😐</button>
+                    <button type="button" class="btn btn-outline-secondary"
+                        onclick="document.getElementById('message').value = document.getElementById('message').value + this.innerHTML">😣</button>
+                    <button type="button" class="btn btn-outline-secondary"
+                        onclick="document.getElementById('message').value = document.getElementById('message').value + this.innerHTML">😯</button>
+                    <button type="button" class="btn btn-outline-secondary"
+                        onclick="document.getElementById('message').value = document.getElementById('message').value + this.innerHTML">😫</button>
+                    <button type="button" class="btn btn-outline-secondary"
+                        onclick="document.getElementById('message').value = document.getElementById('message').value + this.innerHTML">😴</button>
+                    <button type="button" class="btn btn-outline-secondary"
+                        onclick="document.getElementById('message').value = document.getElementById('message').value + this.innerHTML">😌</button>
+                    <button type="button" class="btn btn-outline-secondary"
+                        onclick="document.getElementById('message').value = document.getElementById('message').value + this.innerHTML">😝</button>
+                    <button type="button" class="btn btn-outline-secondary"
+                        onclick="document.getElementById('message').value = document.getElementById('message').value + this.innerHTML">😜</button>
+                    <button type="button" class="btn btn-outline-secondary"
+                        onclick="document.getElementById('message').value = document.getElementById('message').value + this.innerHTML">😢</button>
+                    <button type="button" class="btn btn-outline-secondary"
+                        onclick="document.getElementById('message').value = document.getElementById('message').value + this.innerHTML">😭</button>
+                    <button type="button" class="btn btn-outline-secondary"
+                        onclick="document.getElementById('message').value = document.getElementById('message').value + this.innerHTML">😨</button>
+                    <button type="button" class="btn btn-outline-secondary"
+                        onclick="document.getElementById('message').value = document.getElementById('message').value + this.innerHTML">😰</button>
+                    <button type="button" class="btn btn-outline-secondary"
+                        onclick="document.getElementById('message').value = document.getElementById('message').value + this.innerHTML">😱</button>
+                    <button type="button" class="btn btn-outline-secondary"
+                        onclick="document.getElementById('message').value = document.getElementById('message').value + this.innerHTML">😠</button>
+                    <button type="button" class="btn btn-outline-secondary"
+                        onclick="document.getElementById('message').value = document.getElementById('message').value + this.innerHTML">😕</button>
+                    <button type="button" class="btn btn-outline-secondary"
+                        onclick="document.getElementById('message').value = document.getElementById('message').value + this.innerHTML">🙁</button>
+                    <button type="button" class="btn btn-outline-secondary"
+                        onclick="document.getElementById('message').value = document.getElementById('message').value + this.innerHTML">😮</button>
+                    <button type="button" class="btn btn-outline-secondary"
+                        onclick="document.getElementById('message').value = document.getElementById('message').value + this.innerHTML">😦</button>
+                    <button type="button" class="btn btn-outline-secondary"
+                        onclick="document.getElementById('message').value = document.getElementById('message').value + this.innerHTML">😧</button>
+                    <button type="button" class="btn btn-outline-secondary"
+                        onclick="document.getElementById('message').value = document.getElementById('message').value + this.innerHTML">😑</button>
+                    <button type="button" class="btn btn-outline-secondary"
+                        onclick="document.getElementById('message').value = document.getElementById('message').value + this.innerHTML">😶</button>
+                    <button type="button" class="btn btn-outline-secondary"
+                        onclick="document.getElementById('message').value = document.getElementById('message').value + this.innerHTML">😒</button>
+                    <button type="button" class="btn btn-outline-secondary"
+                        onclick="document.getElementById('message').value = document.getElementById('message').value + this.innerHTML">😬</button>
+                    <button type="button" class="btn btn-outline-secondary"
+                        onclick="document.getElementById('message').value = document.getElementById('message').value + this.innerHTML">😳</button>
+                    <button type="button" class="btn btn-outline-secondary"
+                        onclick="document.getElementById('message').value = document.getElementById('message').value + this.innerHTML">😞</button>
+                    <button type="button" class="btn btn-outline-secondary"
+                        onclick="document.getElementById('message').value = document.getElementById('message').value + this.innerHTML">😓</button>
+                    <button type="button" class="btn btn-outline-secondary"
+                        onclick="document.getElementById('message').value = document.getElementById('message').value + this.innerHTML">😅</button>
+                    <button type="button" class="btn btn-outline-secondary"
+                        onclick="document.getElementById('message').value = document.getElementById('message').value + this.innerHTML">😇</button>
+                    <button type="button" class="btn btn-outline-secondary"
+                        onclick="document.getElementById('message').value = document.getElementById('message').value + this.innerHTML">😔</button>
+                    <button type="button" class="btn btn-outline-secondary"
+                        onclick="document.getElementById('message').value = document.getElementById('message').value + this.innerHTML">😪</button>
+                    <button type="button" class="btn btn-outline-secondary"
+                        onclick="document.getElementById('message').value = document.getElementById('message').value + this.innerHTML">🥳</button>
+                    <button type="button" class="btn btn-outline-secondary"
+                        onclick="document.getElementById('message').value = document.getElementById('message').value + this.innerHTML">😷</button>
+                    <button type="button" class="btn btn-outline-secondary"
+                        onclick="document.getElementById('message').value = document.getElementById('message').value + this.innerHTML">👍</button>
+                    <button type="button" class="btn btn-outline-secondary"
+                        onclick="document.getElementById('message').value = document.getElementById('message').value + this.innerHTML">👎</button>
+                    <button type="button" class="btn btn-outline-secondary"
+                        onclick="document.getElementById('message').value = document.getElementById('message').value + this.innerHTML">👊</button>
+                    <button type="button" class="btn btn-outline-secondary"
+                        onclick="document.getElementById('message').value = document.getElementById('message').value + this.innerHTML">👋</button>
+                    <button type="button" class="btn btn-outline-secondary"
+                        onclick="document.getElementById('message').value = document.getElementById('message').value + this.innerHTML">👏</button>
+                    <button type="button" class="btn btn-outline-secondary"
+                        onclick="document.getElementById('message').value = document.getElementById('message').value + this.innerHTML">👌</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
 
     <!--floating chat button-->
     <div class="position-fixed bottom-0 end-0 p-5" style="max-width: 150px">
@@ -56,14 +170,18 @@
                 </button>
             </div>
             <div class="progress" style="height: 3px;">
-                <div class="progress-bar progress-bar-striped progress-bar-animated" id="progressbar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
-            </div>            
+                <div class="progress-bar progress-bar-striped progress-bar-animated" id="progressbar" role="progressbar"
+                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+            </div>
             <div class="toast-body">
                 <div id="messages" class="container overflow-auto position-relative"
                     style="max-height: 40vh; min-height: 40vh"></div>
                 <div class="mt-2 pt-2 border-top d-flex" style="height: 70px">
                     <input id="message" class="m-1 form-control" placeholder="Enter message..."
                         aria-label="message"></input>
+                    <button type="button" class="m-1 btn btn-light btn-sm" id="emojiButton" onclick="openEmojis()">
+                        <img src="./docs/images/emoji.svg">
+                    </button>
                     <label type="button" class="m-1 btn btn-secondary btn-sm position-relative" style="width: 55px">
                         <img class="position-absolute top-50 start-50 translate-middle" src="./docs/images/image.svg">
                         <input class="form-control form-control-sm form-file-button-color-blue" id="formFileSm"
@@ -77,7 +195,7 @@
                 <div id="imageAttached" hidden>
                     <label id="imageAttachedName" class="m-1"></label>
                     <button type="button" class="m-1 btn-close" aria-label="Close" onclick="fileRemove()"></button>
-                </div>                
+                </div>
             </div>
         </div>
     </div>
