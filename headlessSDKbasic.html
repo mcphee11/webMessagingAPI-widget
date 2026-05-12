@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Headless SDK Basic Example -->
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Headless SDK</title>
+
+  <script type="text/javascript" charset="utf-8">
+    ; (function (g, e, n, es, ys) {
+      g['_genesysJs'] = e
+      g[e] =
+        g[e] ||
+        function () {
+          ; (g[e].q = g[e].q || []).push(arguments)
+        }
+      g[e].t = 1 * new Date()
+      g[e].c = es
+      ys = document.createElement('script')
+      ys.async = 1
+      ys.src = n
+      ys.charset = 'utf-8'
+      document.head.appendChild(ys)
+    })(window, 'Genesys', 'https://apps.mypurecloud.com.au/genesys-bootstrap/genesys.min.js', {
+      environment: 'prod-apse2',
+      deploymentId: 'ENTER_YOUR_DEPLOYMENT_ID',
+    })
+  </script>
+</head>
+
+<body>
+  <h1>Headless SDK Example</h1>
+  <p>To start send a message</p>
+  <textarea type="text" id="message" style="width: 300px; height: 50px"></textarea>
+  <button onclick="send(document.getElementById('message').value)">Send</button>
+  <p id="thread"></p>
+
+  <script>
+    // This is not used in my example but gives you the config from the deployment to use in your app
+    Genesys('registerPlugin', 'Plugin', async function (Plugin) {
+      let config = await Plugin.command('GenesysJS.configuration')
+      console.log('Deployment configuration', config)
+    })
+
+    // once ready to remove race conditions
+    Genesys('subscribe', 'MessagingService.ready', function () {
+      // handles the reconnection as well as the history of messages
+      Genesys('subscribe', 'MessagingService.restored', function ({data}) {
+        console.log(data)
+        for (const message of data.messages.reverse()) {
+          buildMessage(message.messageType, message.text)
+        }
+      })
+      // renders both inbound & outbound text messages
+      Genesys("subscribe", "MessagingService.messagesReceived", function ({data}) {
+        console.log(data)
+        buildMessage(data.messages[0].direction, data.messages[0].text)
+      });
+    })
+
+    // Send a message
+    async function send(message) {
+      let send = await Genesys('command', 'MessagingService.sendMessage', {message})
+      console.log('Message sent', send)
+    }
+
+    // Build the message into the thread
+    async function buildMessage(from, message) {
+      let thread = document.getElementById('thread')
+      thread.innerText += `${from}: ${message}\n`
+    }
+  </script>
+</body>
+
+</html>
